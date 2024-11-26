@@ -1,0 +1,118 @@
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("https://www.nobroker.in/blog/wp-content/uploads/2023/10/regal-maroon-exterior-wall-paint-colour-combination-1200x673.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+  .signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px; /* Reduced from 600px */
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    padding: 30px; /* Reduced padding */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .signup-form-wrapper {
+    width: 100%;
+  }
+  
+  .signup-form h2 {
+    text-align: center;
+    color: #333;
+    font-size: 28px; /* Slightly smaller font size */
+    font-weight: bold;
+    margin-bottom: 20px; /* Reduced margin */
+  }
+  
+  .signup-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 1rem; /* Reduced margin */
+  }
+  
+  .input-icon {
+    position: relative;
+    margin-bottom: 15px; /* Reduced margin */
+  }
+  
+  .input-icon input {
+    width: 100%;
+    padding: 14px 16px; /* Slightly reduced padding */
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px; /* Slightly smaller font size */
+    transition: border-color 0.3s;
+  }
+  
+  .input-icon input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem; /* Reduced margin */
+  }
+  
+  .checkbox-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-left: 0.5rem;
+  }
+  
+  .cs-button1 {
+    width: 100%;
+    padding: 14px; /* Reduced padding */
+    background-color: #e89a9a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px; /* Slightly smaller font size */
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .cs-button:hover {
+    background-color: #d17a7a;
+  }
+  
+  .login-link {
+    text-align: center;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 20px; /* Reduced margin */
+    cursor: pointer;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .signup-container {
+      padding: 20px; /* Reduced padding for mobile */
+      max-width: 85%; /* Reduced max-width */
+    }
+  
+    .signup-form h2 {
+      font-size: 24px; /* Reduced font size for mobile */
+    }
+  
+    .input-icon input,
+    .cs-button {
+      font-size: 14px; /* Smaller font size for mobile */
+    }
+  }
+  

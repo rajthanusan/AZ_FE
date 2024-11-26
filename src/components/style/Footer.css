@@ -1,0 +1,107 @@
+/* Footer Styles */
+.footer {
+    background-color: #863146; /* Deep maroon color for background */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    padding: 15px 15px; /* Reduced padding to make footer shorter */
+    text-align: center; /* Centering text */
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px; /* Add space between columns */
+  }
+  
+  .footer-col {
+    flex: 1;
+    min-width: 250px; /* Ensures columns are responsive */
+  }
+  
+  .footer-col img {
+    max-width: 100px; /* Reduced logo size for compact look */
+    margin-bottom: 10px; /* Space below logo */
+  }
+  
+  .footer-heading {
+    font-size: 1.2rem; /* Slightly larger heading for prominence */
+    font-weight: 600;
+    margin-bottom: 1rem; /* Increased margin for visual balance */
+    color: white;
+    letter-spacing: 1px; /* Adds some spacing for a clean look */
+  }
+  
+  .footer-description {
+    font-size: 0.95rem; /* Slightly larger text for better readability */
+    color: white;
+    line-height: 1.6;
+    margin-bottom: 1rem; /* Add space after description */
+  }
+  
+  .footer-services {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-services li {
+    font-size: 1rem; /* Larger text for service items */
+    margin-bottom: 10px;
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-services li:hover {
+    color: #f1c4d3; /* Hover effect with a lighter color */
+  }
+  
+  .footer-social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between social links */
+  }
+  
+  .footer-social-link {
+    font-size: 1rem; /* Larger social link text */
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-social-link:hover {
+    color: #c75b7a;
+  }
+  
+  .footer-bottom {
+    margin-top: 15px; /* Reduced top margin */
+    text-align: center;
+  }
+  
+  .footer-copy {
+    font-size: 0.85rem; /* Slightly larger copyright text */
+    color: white;
+    margin-top: 10px; /* Added margin for spacing */
+  }
+  
+  @media (max-width: 768px) {
+    .footer-row {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px; /* Space between rows */
+    }
+  
+    .footer-col {
+      margin-bottom: 20px; /* Adds space between sections */
+    }
+  
+    .footer-copy {
+      font-size: 0.75rem; /* Smaller text for smaller screens */
+    }
+  }
+  

@@ -1,0 +1,94 @@
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeIn {
+  animation: fadeInAnimation 1s ease-in-out;
+  
+}
+
+/* You can adjust the timing to stagger animations */
+.subheading {
+  animation-delay: 0.2s;
+}
+
+h1 {
+  animation-delay: 0.4s;
+}
+
+.benefits-list {
+  animation-delay: 0.6s;
+}
+
+.icon-item {
+  animation-delay: 1s;
+  
+}
+
+
+.background-image {
+ 
+  height: 100%;
+  width: 100%;
+  background-size: cover; /* Ensures image covers entire area */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+ 
+
+
+}
+
+
+@media (max-width: 370px) {
+  .hero-section {
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .subheading, .display-5 {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .benefits-icons {
+    padding: 20px 0;
+    background-color: #B22150;
+    font-weight: 700;
+  }
+
+
+
+
+  .icon {
+    font-size: 1.5rem;
+    
+    
+  }
+
+  .call-us-button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .background-image {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+  }
+}
+.hero-section h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
+  color: #4a4a4a;
+}

@@ -1,0 +1,271 @@
+
+
+.service-card {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative; /* Required for animations */
+}
+
+.service-card:hover {
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.7); /* Glow effect */
+  transform: scale(1.05); /* Slight increase in size */
+}
+
+.service-card .icon {
+  animation: dance 1s infinite; /* Animation for the icons */
+}
+
+.service-card:hover .icon {
+  animation-play-state: paused; /* Pause animation on hover */
+}
+
+@keyframes dance {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(15deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(-15deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+
+
+.service-card {
+  padding: 20px;
+  border: 1px solid #ccc; /* Optional: Add a border */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+  @keyframes dance {
+    0% {
+      transform: translateY(0); /* Initial position */
+    }
+    25% {
+      transform: translateY(-10px); /* Move up */
+    }
+    50% {
+      transform: translateY(5px); /* Move down slightly */
+    }
+    75% {
+      transform: translateY(-5px); /* Move up again */
+    }
+    100% {
+      transform: translateY(0); /* Back to initial position */
+    }
+  }
+  
+  .service-card {
+    padding: 20px;
+    border: 1px solid #ccc; /* Base border color */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+    position: relative; /* Required for the glow effect */
+    @keyframes dance {
+  0% {
+    transform: translateY(0); /* Initial position */
+  }
+  25% {
+    transform: translateY(-10px); /* Move up */
+  }
+  50% {
+    transform: translateY(5px); /* Move down slightly */
+  }
+  75% {
+    transform: translateY(-5px); /* Move up again */
+  }
+  100% {
+    transform: translateY(0); /* Back to initial position */
+  }
+}
+
+.service-card {
+  padding: 20px;
+  border: 1px solid #ccc; /* Base border color */
+  border-radius: 10px; /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+  position: relative; /* Required for the glow effect */
+}
+
+/* Glow effect on hover */
+.service-card:hover {
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.7); /* Adjust the color and spread for the glow effect */
+  transform: scale(1.05); /* Slightly increase the size on hover for added effect */
+}
+
+/* Apply the dance animation to the icons */
+.service-card .icon {
+  animation: dance 1s infinite; /* Icon moves continuously */
+}
+
+/* Pause animation on hover to focus on the card */
+.service-card:hover .icon {
+  animation-play-state: paused; /* Pause the animation when hovering over the card */
+}
+
+  }
+  
+  /* Glow effect on hover */
+  .service-card:hover {
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.7); /* Adjust the color and spread for the glow effect */
+    transform: scale(1.05); /* Slightly increase the size on hover for added effect */
+  }
+  
+  /* Apply the dance animation to the icons */
+  .service-card .icon {
+    animation: dance 1s infinite; /* Icon moves continuously */
+  }
+  
+  /* Pause animation on hover to focus on the card */
+  .service-card:hover .icon {
+    animation-play-state: paused; /* Pause the animation when hovering over the card */
+  }
+  
+}
+
+.service-card:hover {
+  transform: translateY(-10px); /* Move the card up on hover */
+}
+
+.service-card .icon {
+  transition: transform 0.3s ease; /* Smooth transition for icons */
+}
+
+.service-card:hover .icon {
+  transform: translateY(-10px); /* Move the icon up on hover */
+}
+@keyframes dance {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(15deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(-15deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.service-card {
+  padding: 20px;
+  border: 1px solid #ccc; /* Optional: Add a border */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+.service-card:hover .icon {
+  animation: dance 0.5s ease forwards; /* Apply dance animation on hover */
+}
+.service-card {
+  padding: 20px;
+  border: 1px solid #ccc; /* Base border color */
+  border-radius: 10px; /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+  position: relative; /* Required for the glow effect */
+}
+
+/* Glow effect on hover */
+.service-card:hover {
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.7); /* Adjust the color and spread for the glow effect */
+  transform: scale(1.05); /* Slightly increase the size on hover for added effect */
+}
+@keyframes dance {
+  0% {
+    transform: translateY(0); /* Initial position */
+  }
+  25% {
+    transform: translateY(-10px); /* Move up */
+  }
+  50% {
+    transform: translateY(5px); /* Move down slightly */
+  }
+  75% {
+    transform: translateY(-5px); /* Move up again */
+  }
+  100% {
+    transform: translateY(0); /* Back to initial position */
+  }
+}
+
+.service-card {
+  padding: 20px;
+  border: 1px solid #ccc; /* Base border color */
+  border-radius: 10px; /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+  position: relative; /* Required for the glow effect */
+  @keyframes dance {
+  0% {
+    transform: translateY(0); /* Initial position */
+  }
+  25% {
+    transform: translateY(-10px); /* Move up */
+  }
+  50% {
+    transform: translateY(5px); /* Move down slightly */
+  }
+  75% {
+    transform: translateY(-5px); /* Move up again */
+  }
+  100% {
+    transform: translateY(0); /* Back to initial position */
+  }
+}
+
+.service-card {
+  padding: 20px;
+  border: 1px solid #ccc; /* Base border color */
+  border-radius: 10px; /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+  position: relative; /* Required for the glow effect */
+  
+}
+
+/* Glow effect on hover */
+.service-card:hover {
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.7); /* Adjust the color and spread for the glow effect */
+  transform: scale(1.05); /* Slightly increase the size on hover for added effect */
+}
+
+/* Apply the dance animation to the icons */
+.service-card .icon {
+  animation: dance 1s infinite; /* Icon moves continuously */
+}
+
+/* Pause animation on hover to focus on the card */
+.service-card:hover .icon {
+  animation-play-state: paused; /* Pause the animation when hovering over the card */
+}
+
+}
+
+/* Glow effect on hover */
+.service-card:hover {
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.7); /* Adjust the color and spread for the glow effect */
+  transform: scale(1.05); /* Slightly increase the size on hover for added effect */
+}
+
+/* Apply the dance animation to the icons */
+.service-card .icon {
+  animation: dance 1s infinite; /* Icon moves continuously */
+}
+
+/* Pause animation on hover to focus on the card */
+.service-card:hover .icon {
+  animation-play-state: paused; /* Pause the animation when hovering over the card */
+}
