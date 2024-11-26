@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Button, Table, Modal, Form, Pagination, Card } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from "react";
+import {
+  Container,
+  Button,
+  Table,
+  Modal,
+  Form,
+  Pagination,
+  Card,
+} from "react-bootstrap";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
@@ -18,12 +25,12 @@ const AdminUser = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/users');
+      const response = await fetch("http://localhost:5000/api/users");
       const data = await response.json();
       setUsers(data);
     } catch (error) {
-      toast.error('Error fetching users');
-      console.error('Error fetching users:', error);
+      toast.error("Error fetching users");
+      console.error("Error fetching users:", error);
     }
   };
 
@@ -33,16 +40,16 @@ const AdminUser = () => {
   };
 
   const handleDelete = async (userId) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
+    if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         await fetch(`http://localhost:5000/api/users/${userId}`, {
-          method: 'DELETE',
+          method: "DELETE",
         });
-        toast.success('User deleted successfully');
+        toast.success("User deleted successfully");
         fetchUsers();
       } catch (error) {
-        toast.error('Error deleting user');
-        console.error('Error deleting user:', error);
+        toast.error("Error deleting user");
+        console.error("Error deleting user:", error);
       }
     }
   };
@@ -58,9 +65,9 @@ const AdminUser = () => {
 
     try {
       await fetch(`http://localhost:5000/api/users/${selectedUser._id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           firstName: firstName.value,
@@ -69,12 +76,12 @@ const AdminUser = () => {
           role: role.value,
         }),
       });
-      toast.success('User updated successfully');
+      toast.success("User updated successfully");
       fetchUsers();
       handleModalClose();
     } catch (error) {
-      toast.error('Error updating user');
-      console.error('Error updating user:', error);
+      toast.error("Error updating user");
+      console.error("Error updating user:", error);
     }
   };
 
@@ -101,21 +108,19 @@ const AdminUser = () => {
   }
 
   return (
-    <section id="admin-user"  className="py-4">
+    <section id="admin-user" className="py-4">
       <Container>
-      <h2 className="display-5 mb-3 cheading">
-      User <span>Management</span> 
+        <h2 className="display-5 mb-3 cheading">
+          User <span>Management</span>
         </h2>
-       
 
         {/* Display the total number of users with role 'user' */}
-       
 
         <div className="table-container">
           <Card className="shadow-lg border-0">
             <Card.Body>
               <Table striped bordered hover responsive>
-                <thead style={{ backgroundColor: '#8f2347', color: 'white' }}>
+                <thead style={{ backgroundColor: "#8f2347", color: "white" }}>
                   <tr>
                     <th>#</th>
                     <th>First Name</th>
@@ -123,7 +128,6 @@ const AdminUser = () => {
                     <th>Email</th>
                     <th>Role</th>
                     <th>Actions</th>
-                    
                   </tr>
                 </thead>
                 <tbody>
@@ -135,30 +139,29 @@ const AdminUser = () => {
                       <td>{user.email}</td>
                       <td>{user.role}</td>
                       <td>
-                      <Button
-  variant="danger"
-  style={{
-    backgroundColor: '#e63946',
-    borderColor: '#e63946',
-    borderRadius: '5px',
-    marginRight: '10px', // Add space to the right of the first button
-  }}
-  onClick={() => handleEdit(user)}
->
-  Edit
-</Button>
-<Button
-  variant="danger"
-  style={{
-    backgroundColor: '#e63946',
-    borderColor: '#e63946',
-    borderRadius: '5px',
-  }}
-  onClick={() => handleDelete(user._id)}
->
-  Delete
-</Button>
-
+                        <Button
+                          variant="danger"
+                          style={{
+                            backgroundColor: "#e63946",
+                            borderColor: "#e63946",
+                            borderRadius: "5px",
+                            marginRight: "10px", // Add space to the right of the first button
+                          }}
+                          onClick={() => handleEdit(user)}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant="danger"
+                          style={{
+                            backgroundColor: "#e63946",
+                            borderColor: "#e63946",
+                            borderRadius: "5px",
+                          }}
+                          onClick={() => handleDelete(user._id)}
+                        >
+                          Delete
+                        </Button>
                       </td>
                     </tr>
                   ))}
@@ -209,15 +212,24 @@ const AdminUser = () => {
               <Form onSubmit={handleUpdateUser}>
                 <Form.Group controlId="firstName">
                   <Form.Label>First Name</Form.Label>
-                  <Form.Control type="text" defaultValue={selectedUser.firstName} />
+                  <Form.Control
+                    type="text"
+                    defaultValue={selectedUser.firstName}
+                  />
                 </Form.Group>
                 <Form.Group controlId="lastName">
                   <Form.Label>Last Name</Form.Label>
-                  <Form.Control type="text" defaultValue={selectedUser.lastName} />
+                  <Form.Control
+                    type="text"
+                    defaultValue={selectedUser.lastName}
+                  />
                 </Form.Group>
                 <Form.Group controlId="email">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" defaultValue={selectedUser.email} />
+                  <Form.Control
+                    type="email"
+                    defaultValue={selectedUser.email}
+                  />
                 </Form.Group>
                 <Form.Group controlId="role">
                   <Form.Label>Role</Form.Label>
@@ -226,7 +238,11 @@ const AdminUser = () => {
                     <option value="admin">Admin</option>
                   </Form.Control>
                 </Form.Group>
-                <Button variant="primary" type="submit" style={{ backgroundColor: 'black' }}>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ backgroundColor: "black" }}
+                >
                   Save Changes
                 </Button>
               </Form>

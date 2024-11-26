@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Table, Button, Pagination, Card } from 'react-bootstrap';
+import { Container, Table, Button, Pagination, Card } from 'react-bootstrap';
 import axios from 'axios';
 
 const AdminCardService = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Table, Pagination, Modal, Card } from 'react-bootstrap';
 import axios from 'axios';
-import logo from '../../Image/az01.png';
+
 
 const AdminCard = () => {
   const [serviceBookings, setServiceBookings] = useState([]);

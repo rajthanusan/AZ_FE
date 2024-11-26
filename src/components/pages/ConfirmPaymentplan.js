@@ -10,11 +10,11 @@ import moment from 'moment';
 const ConfirmPaymentPlan = ({ planId, planType, planAmount, onClose }) => {
   const [serviceLocation, setServiceLocation] = useState('');
   const [duration, setDuration] = useState(1);
-  const [username, setUsername] = useState(localStorage.getItem('username') || '');
-  const [email, setEmail] = useState(localStorage.getItem('email') || '');
+  const [username] = useState(localStorage.getItem('username') || '');
+  const [email] = useState(localStorage.getItem('email') || '');
   const [uploadedImage, setUploadedImage] = useState(null);
   const [showPayPal, setShowPayPal] = useState(false);
-  const [error, setError] = useState('');
+
   const [disableInputs, setDisableInputs] = useState(false);
 
   const totalAmount = planAmount * duration;

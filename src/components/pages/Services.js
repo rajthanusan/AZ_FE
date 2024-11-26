@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Container, Row, Col, Card, Button, Carousel, Modal } from "react-bootstrap";
 import axios from "axios";
 import ConfirmPayment from "./ConfirmPayment";
 
 const Services = () => {
-  const [services, setServices] = useState([]);
+  const [ setServices] = useState([]);
   const [groupedServices, setGroupedServices] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
 
-  useEffect(() => {
-    fetchServices();
-  }, []);
-
-  const fetchServices = async () => {
+  // Use useCallback to memoize the function
+  const fetchServices = useCallback(async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/services");
       setServices(response.data);
@@ -21,7 +18,11 @@ const Services = () => {
     } catch (error) {
       console.error("Error fetching services:", error);
     }
-  };
+  }, [setServices]); // Add setServices to the dependency array
+
+  useEffect(() => {
+    fetchServices();
+  }, [fetchServices]);
 
   const groupServices = (services) => {
     const groups = [];

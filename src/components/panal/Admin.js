@@ -91,18 +91,21 @@ const Admin = ({ user, onLogout, handleCartClick }) => {
         <ul style={{ listStyleType: 'none', paddingTop: '15px' }}>
           {['AdminDashboard','AdminCard', 'AdminCardService', 'AdminUser', 'AdminPlans', 'AdminServices'].map((item, index) => (
             <li key={index} style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
-              <a
-                onClick={() => setActiveComponent(item)}
-                style={{
-                  cursor: 'pointer',
-                  textDecoration: 'none',
-                  color: '#8f2347',
-                  display: 'flex',
-                  alignItems: 'center',
-                  fontSize: '16px',
-                  padding: '5px 0',
-                }}
-              >
+             <a
+  href="#home"
+  onClick={() => setActiveComponent(item)}
+  style={{
+    cursor: 'pointer',
+    textDecoration: 'none',
+    color: '#8f2347',
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '16px',
+    padding: '5px 0',
+  }}
+>
+
+
                 <FontAwesomeIcon icon={index === 0 ? faCreditCard : index === 1 ? faToolbox : index === 2 ? faUser : index === 3 ? faClipboardList : faCog} 
                                  color="#8f2347" style={{ marginRight: '10px' }} />
                 {item.replace('Admin', '').replace(/([A-Z])/g, ' $1').trim()}

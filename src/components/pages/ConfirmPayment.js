@@ -9,11 +9,11 @@ const ConfirmPayment = ({ service, onClose }) => {
   const [address, setAddress] = useState('');
   const [hours, setHours] = useState(1);
   const [totalAmount, setTotalAmount] = useState(service ? service.serviceAmountPerHour : 0);
-  const [paymentStatus, setPaymentStatus] = useState({ success: null, message: '' });
-  const [username, setUsername] = useState(localStorage.getItem('username') || '');
-  const [email, setEmail] = useState(localStorage.getItem('email') || '');
+  const [setPaymentStatus] = useState({ success: null, message: '' });
+  const [username] = useState(localStorage.getItem('username') || '');
+  const [email] = useState(localStorage.getItem('email') || '');
   const [showPayPal, setShowPayPal] = useState(false);
-  const [error, setError] = useState('');
+  const [ setError] = useState('');
 
   useEffect(() => {
     setTotalAmount(hours * service.serviceAmountPerHour);

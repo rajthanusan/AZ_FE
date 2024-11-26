@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../style/signup.css';
-import { FaGoogle, FaFacebook } from 'react-icons/fa';
+
 import { useNavigate } from 'react-router-dom';
 
 const SignUpPage = () => {

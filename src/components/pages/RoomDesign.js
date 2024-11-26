@@ -329,7 +329,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import '../style/RoomDesign.css';
 import { FiDownload, FiPackage } from 'react-icons/fi';
-import Plans from './Plans';
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -565,8 +565,8 @@ const RoomDesign = () => {
 
   useEffect(() => {
     drawCanvas();
-  }, [roomImage, furniture, selectedFurniture]);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [roomImage, furniture, selectedFurniture]);
   
 
 

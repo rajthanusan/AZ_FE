@@ -15,7 +15,7 @@ import ConfirmPayment1 from './components/pages/ConfirmPaymentplan';
 import Card from './components/pages/Card';
 import RoomDesign from './components/pages/RoomDesign';
 import CusRoom from './components/pages/CustomizeRoomSection';
-import Chatbot from './components/pages/Chatbot';
+
 import Servicesection from './components/pages/ServicesSection';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ScrollToTop from './ScrollToTop'
