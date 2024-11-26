@@ -32,16 +32,13 @@ const ConfirmPaymentPlan = ({ planId, planType, planAmount, onClose }) => {
     }
 
     try {
-      const response = await axios.get(
-        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/booking",
-        {
-          params: {
-            user: username,
-            serviceName: planType,
-            serviceLocation: serviceLocation,
-          },
-        }
-      );
+      const response = await axios.get("http://localhost:5000/api/booking", {
+        params: {
+          user: username,
+          serviceName: planType,
+          serviceLocation: serviceLocation,
+        },
+      });
 
       const existingBookings = response.data;
 
@@ -109,13 +106,9 @@ const ConfirmPaymentPlan = ({ planId, planType, planAmount, onClose }) => {
         formData.append("serviceImage", uploadedImage);
       }
 
-      await axios.post(
-        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookings",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      await axios.post("http://localhost:5000/api/bookings", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
       // Show success toast
       toast.success("Booking created successfully!");

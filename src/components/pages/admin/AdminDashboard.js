@@ -41,21 +41,11 @@ const AdminDashboard = () => {
           packageData,
           serviceData,
         ] = await Promise.all([
-          axios.get(
-            "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookings"
-          ),
-          axios.get(
-            "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookingservice"
-          ),
-          axios.get(
-            "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/users"
-          ),
-          axios.get(
-            "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/service-plans"
-          ),
-          axios.get(
-            "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services"
-          ),
+          axios.get("http://localhost:5000/api/bookings"),
+          axios.get("http://localhost:5000/api/bookingservice"),
+          axios.get("http://localhost:5000/api/users"),
+          axios.get("http://localhost:5000/api/service-plans"),
+          axios.get("http://localhost:5000/api/services"),
         ]);
 
         setBookings(bookingData.data);

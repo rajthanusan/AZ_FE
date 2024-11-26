@@ -33,7 +33,7 @@ const ConfirmPayment = ({ service, onClose }) => {
 
     try {
       const response = await axios.post(
-        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookingservice",
+        "http://localhost:5000/api/bookingservice",
         bookingData
       );
       setPaymentStatus({ success: true, message: response.data.message });

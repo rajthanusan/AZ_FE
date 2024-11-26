@@ -21,7 +21,7 @@
 
 //   const fetchServices = async () => {
 //     try {
-//       const response = await axios.get('${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services');
+//       const response = await axios.get('http://localhost:5000/api/services');
 //       setServices(response.data);
 //     } catch (error) {
 //       console.error('Error fetching services:', error);
@@ -56,12 +56,12 @@
 //     try {
 //       if (editingServiceId) {
 //         // Update service
-//         await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services/${editingServiceId}`, formDataToSend, {
+//         await axios.put(`http://localhost:5000/api/services/${editingServiceId}`, formDataToSend, {
 //           headers: { 'Content-Type': 'multipart/form-data' }
 //         });
 //       } else {
 //         // Create new service
-//         await axios.post('${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services', formDataToSend, {
+//         await axios.post('http://localhost:5000/api/services', formDataToSend, {
 //           headers: { 'Content-Type': 'multipart/form-data' }
 //         });
 //       }
@@ -87,7 +87,7 @@
 
 //   const handleDelete = async (id) => {
 //     try {
-//       await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services/${id}`);
+//       await axios.delete(`http://localhost:5000/api/services/${id}`);
 //       fetchServices();
 //     } catch (error) {
 //       console.error('Error deleting service:', error);
@@ -191,7 +191,7 @@
 //                     <td>
 //                       {service.serviceImage && (
 //                         <img
-//                           src={`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/uploads/${service.serviceImage}`}
+//                           src={`http://localhost:5000/uploads/${service.serviceImage}`}
 //                           alt={service.serviceName}
 //                           width="50"
 //                         />
@@ -297,9 +297,7 @@ const AdminServices = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await axios.get(
-        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services"
-      );
+      const response = await axios.get("http://localhost:5000/api/services");
       setServices(response.data);
     } catch (error) {
       console.error("Error fetching services:", error);
@@ -348,13 +346,9 @@ const AdminServices = () => {
         );
       } else {
         // Create new service
-        await axios.post(
-          "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services",
-          formDataToSend,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
+        await axios.post("http://localhost:5000/api/services", formDataToSend, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
       }
 
       // Clear the form after submission
@@ -385,9 +379,7 @@ const AdminServices = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(
-        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services/${id}`
-      );
+      await axios.delete(`http://localhost:5000/api/services/${id}`);
       fetchServices();
     } catch (error) {
       console.error("Error deleting service:", error);

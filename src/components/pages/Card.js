@@ -25,7 +25,7 @@ const Card = () => {
     const fetchServiceBookings = async () => {
       try {
         const response = await fetch(
-          "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookingservice"
+          "http://localhost:5000/api/bookingservice"
         );
         if (!response.ok) throw new Error("Failed to fetch service bookings");
         const data = await response.json();
@@ -43,9 +43,7 @@ const Card = () => {
 
     const fetchPlanBookings = async () => {
       try {
-        const response = await fetch(
-          "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookings"
-        );
+        const response = await fetch("http://localhost:5000/api/bookings");
         if (!response.ok) throw new Error("Failed to fetch plan bookings");
         const data = await response.json();
         const userPlanBookings = data.filter(

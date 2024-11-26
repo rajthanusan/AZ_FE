@@ -25,7 +25,7 @@ function Chatbot() {
 
     try {
       const response = await axios.post(
-        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/aichat/chat",
+        "http://localhost:5000/api/aichat/chat",
         {
           message: input,
         }

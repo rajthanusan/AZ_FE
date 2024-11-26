@@ -15,7 +15,7 @@ const AdminCard = () => {
   const [serviceBookings, setServiceBookings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const bookingsPerPage = 5;
-  const BASE_URL = "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/uploads/";
+  const BASE_URL = "http://localhost:5000/uploads/";
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
 
@@ -25,9 +25,7 @@ const AdminCard = () => {
 
   const fetchServiceBookings = async () => {
     try {
-      const response = await axios.get(
-        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookings"
-      );
+      const response = await axios.get("http://localhost:5000/api/bookings");
       setServiceBookings(response.data);
     } catch (error) {
       console.error("Error fetching bookings:", error);
@@ -46,9 +44,7 @@ const AdminCard = () => {
 
   const handleDeleteBooking = async (id) => {
     try {
-      await axios.delete(
-        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookings/${id}`
-      );
+      await axios.delete(`http://localhost:5000/api/bookings/${id}`);
       fetchServiceBookings();
     } catch (error) {
       console.error("Error deleting booking:", error);

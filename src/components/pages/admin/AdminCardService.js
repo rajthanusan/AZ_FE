@@ -14,7 +14,7 @@ const AdminCardService = () => {
   const fetchServiceBookings = async () => {
     try {
       const response = await axios.get(
-        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookingservice"
+        "http://localhost:5000/api/bookingservice"
       );
       setServiceBookings(response.data);
     } catch (error) {
