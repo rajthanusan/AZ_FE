@@ -1,19 +1,18 @@
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../style/signup.css";
 
-import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import '../style/signup.css';
-
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
   const navigate = useNavigate(); // Initialize navigate
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
     agree: false,
   });
 
@@ -21,40 +20,43 @@ const SignUpPage = () => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (!formData.agree) {
-      toast.error('Please agree to the terms and conditions');
+      toast.error("Please agree to the terms and conditions");
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
-        toast.success('Sign up successful! Please log in.');
-        navigate('/login'); // Redirect to login after successful signup
+        toast.success("Sign up successful! Please log in.");
+        navigate("/login"); // Redirect to login after successful signup
       } else {
         const errorData = await response.json();
-        toast.error(errorData.message || 'Sign up failed. Please try again.');
+        toast.error(errorData.message || "Sign up failed. Please try again.");
       }
     } catch {
-      toast.error('An error occurred while signing up.');
+      toast.error("An error occurred while signing up.");
     }
   };
 
   const handleLoginClick = () => {
-    navigate('/login'); // Redirect to /login when "Already have an account? Login" is clicked
+    navigate("/login"); // Redirect to /login when "Already have an account? Login" is clicked
   };
 
   return (
@@ -63,7 +65,9 @@ const SignUpPage = () => {
         <div className="signup-form-wrapper">
           <form className="signup-form" onSubmit={handleSignUp}>
             <h2>Create a New Account</h2>
-            <p className="signup-subtitle">Quick & Simple way to Automate your payment</p>
+            <p className="signup-subtitle">
+              Quick & Simple way to Automate your payment
+            </p>
             <div className="input-icon">
               <input
                 type="text"
@@ -165,7 +169,7 @@ export default SignUpPage;
 //     }
 
 //     try {
-//       const response = await fetch('http://localhost:5000/api/register', {
+//       const response = await fetch('${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/register', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -274,7 +278,6 @@ export default SignUpPage;
 
 // export default SignUpPage;
 
-
 //try
 // import React, { useState } from 'react';
 // import { ToastContainer, toast } from 'react-toastify';
@@ -311,7 +314,7 @@ export default SignUpPage;
 //     }
 
 //     try {
-//       const response = await fetch('http://localhost:5000/api/register', {
+//       const response = await fetch('${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/register', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -427,7 +430,6 @@ export default SignUpPage;
 
 // vedidation
 
-
 // import React, { useState } from 'react';
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -495,7 +497,7 @@ export default SignUpPage;
 //     }
 
 //     try {
-//       const response = await fetch('http://localhost:5000/api/register', {
+//       const response = await fetch('${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/register', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',

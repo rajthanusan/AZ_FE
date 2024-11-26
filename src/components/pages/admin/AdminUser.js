@@ -25,7 +25,9 @@ const AdminUser = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/users");
+      const response = await fetch(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/users"
+      );
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -42,9 +44,14 @@ const AdminUser = () => {
   const handleDelete = async (userId) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
-        await fetch(`http://localhost:5000/api/users/${userId}`, {
-          method: "DELETE",
-        });
+        await fetch(
+          `${
+            import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
+          }/api/users/${userId}`,
+          {
+            method: "DELETE",
+          }
+        );
         toast.success("User deleted successfully");
         fetchUsers();
       } catch (error) {
@@ -64,18 +71,23 @@ const AdminUser = () => {
     const { firstName, lastName, email, role } = e.target.elements;
 
     try {
-      await fetch(`http://localhost:5000/api/users/${selectedUser._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: firstName.value,
-          lastName: lastName.value,
-          email: email.value,
-          role: role.value,
-        }),
-      });
+      await fetch(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/users/${
+          selectedUser._id
+        }`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: firstName.value,
+            lastName: lastName.value,
+            email: email.value,
+            role: role.value,
+          }),
+        }
+      );
       toast.success("User updated successfully");
       fetchUsers();
       handleModalClose();

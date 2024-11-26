@@ -5,7 +5,12 @@ import ReactMarkdown from "react-markdown";
 import "../style/Chatbot.css";
 
 function Chatbot() {
-  const [messages, setMessages] = useState([{ text: 'Welcome to AZBoard! 😊 How can I assist you today? ✨', sender: 'bot' }]);
+  const [messages, setMessages] = useState([
+    {
+      text: "Welcome to AZBoard! 😊 How can I assist you today? ✨",
+      sender: "bot",
+    },
+  ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,9 +24,12 @@ function Chatbot() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/aichat/chat", {
-        message: input,
-      });
+      const response = await axios.post(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/aichat/chat",
+        {
+          message: input,
+        }
+      );
       const botMessage = { text: response.data.response, sender: "bot" };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {

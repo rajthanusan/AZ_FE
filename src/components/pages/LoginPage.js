@@ -1,20 +1,18 @@
-
-
-import React, { useState } from 'react';
-import '../style/login.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import "../style/login.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const LoginPage = ({ onLogin }) => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const query = new URLSearchParams(location.search);
-  const redirectTo = query.get('redirect');
+  const redirectTo = query.get("redirect");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,35 +21,43 @@ const LoginPage = ({ onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('role', data.user.role);
-        localStorage.setItem('email', data.user.email);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.user.role);
+        localStorage.setItem("email", data.user.email);
         onLogin(data.user.firstName);
 
-        toast.success('Login successful! Redirecting...');
+        toast.success("Login successful! Redirecting...");
         setTimeout(() => {
-          navigate(redirectTo || (data.user.role === 'admin' ? '/admin-dashboard' : '/user-dashboard'));
+          navigate(
+            redirectTo ||
+              (data.user.role === "admin"
+                ? "/admin-dashboard"
+                : "/user-dashboard")
+          );
         }, 2000);
       } else {
         const errorData = await response.json();
         setError(`Login failed: ${errorData.message || response.statusText}`);
-        toast.error(errorData.message || 'Login failed. Please try again.');
+        toast.error(errorData.message || "Login failed. Please try again.");
       }
     } catch {
-      setError('An unexpected error occurred. Please try again later.');
-      toast.error('An unexpected error occurred. Please try again later.');
+      setError("An unexpected error occurred. Please try again later.");
+      toast.error("An unexpected error occurred. Please try again later.");
     } finally {
       setIsLoading(false);
     }
@@ -83,12 +89,21 @@ const LoginPage = ({ onLogin }) => {
                 required
               />
             </div>
-            <button type="submit" className="login-btn custom-button " disabled={isLoading}>
-              {isLoading ? 'Logging in...' : 'Login'}
+            <button
+              type="submit"
+              className="login-btn custom-button "
+              disabled={isLoading}
+            >
+              {isLoading ? "Logging in..." : "Login"}
             </button>
             {error && <p className="error-message">{error}</p>}
             <div className="login-footer">
-              <p>Don't have an account? <a href="/signup" className="signup-link">Sign up</a></p>
+              <p>
+                Don't have an account?{" "}
+                <a href="/signup" className="signup-link">
+                  Sign up
+                </a>
+              </p>
             </div>
           </form>
         </div>
@@ -99,4 +114,3 @@ const LoginPage = ({ onLogin }) => {
 };
 
 export default LoginPage;
-

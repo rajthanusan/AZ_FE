@@ -1,19 +1,20 @@
-
-import React, { useState, useEffect } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import { ToastContainer, toast } from 'react-toastify';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Container, Form, Button } from "react-bootstrap";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 const ConfirmPayment = ({ service, onClose }) => {
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState("");
   const [hours, setHours] = useState(1);
-  const [totalAmount, setTotalAmount] = useState(service ? service.serviceAmountPerHour : 0);
-  const [setPaymentStatus] = useState({ success: null, message: '' });
-  const [username] = useState(localStorage.getItem('username') || '');
-  const [email] = useState(localStorage.getItem('email') || '');
+  const [totalAmount, setTotalAmount] = useState(
+    service ? service.serviceAmountPerHour : 0
+  );
+  const [setPaymentStatus] = useState({ success: null, message: "" });
+  const [username] = useState(localStorage.getItem("username") || "");
+  const [email] = useState(localStorage.getItem("email") || "");
   const [showPayPal, setShowPayPal] = useState(false);
-  const [ setError] = useState('');
+  const [setError] = useState("");
 
   useEffect(() => {
     setTotalAmount(hours * service.serviceAmountPerHour);
@@ -31,7 +32,10 @@ const ConfirmPayment = ({ service, onClose }) => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/bookingservice', bookingData);
+      const response = await axios.post(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookingservice",
+        bookingData
+      );
       setPaymentStatus({ success: true, message: response.data.message });
       toast.success(response.data.message);
       resetForm();
@@ -40,36 +44,44 @@ const ConfirmPayment = ({ service, onClose }) => {
         window.location.href = "/";
       }, 3000);
     } catch (error) {
-      setPaymentStatus({ success: false, message: 'Error processing payment. Please try again.' });
-      toast.error('Error processing payment. Please try again.');
+      setPaymentStatus({
+        success: false,
+        message: "Error processing payment. Please try again.",
+      });
+      toast.error("Error processing payment. Please try again.");
     }
   };
 
   const resetForm = () => {
-    setAddress('');
+    setAddress("");
     setHours(1);
     setShowPayPal(false);
-    setPaymentStatus({ success: null, message: '' });
+    setPaymentStatus({ success: null, message: "" });
   };
 
   const handleProceedClick = () => {
     if (!address.trim()) {
-      setError('Please enter a valid address.');
+      setError("Please enter a valid address.");
       setShowPayPal(false);
-      toast.error('Please enter a valid address.');
+      toast.error("Please enter a valid address.");
     } else {
-      setError('');
+      setError("");
       setShowPayPal(true);
     }
   };
 
   return (
     <Container>
-      
-
-      <p><strong>Service:</strong> {service.serviceName}</p>
-      <p><strong>Amount per Hour:</strong> ${service.serviceAmountPerHour.toFixed(2)}</p>
-      <p><strong>Total Amount:</strong> ${totalAmount.toFixed(2)}</p>
+      <p>
+        <strong>Service:</strong> {service.serviceName}
+      </p>
+      <p>
+        <strong>Amount per Hour:</strong> $
+        {service.serviceAmountPerHour.toFixed(2)}
+      </p>
+      <p>
+        <strong>Total Amount:</strong> ${totalAmount.toFixed(2)}
+      </p>
 
       <Form onSubmit={(e) => e.preventDefault()}>
         <Form.Group>
@@ -95,20 +107,31 @@ const ConfirmPayment = ({ service, onClose }) => {
         </Form.Group>
 
         {!showPayPal && (
-          <Button variant="primary" className="mt-3 custom-button " onClick={handleProceedClick}>
+          <Button
+            variant="primary"
+            className="mt-3 custom-button "
+            onClick={handleProceedClick}
+          >
             Proceed to Payment
           </Button>
         )}
 
         {showPayPal && (
-          <PayPalScriptProvider options={{ "client-id": "AT4si2YLorhpc5Nk-YiaE8za2qLz2Jo9cSp3AgoJnFZAXpum0idHZOu35dqP5bj0S9nB6qHP0h7Lk9k_" }}>
+          <PayPalScriptProvider
+            options={{
+              "client-id":
+                "AT4si2YLorhpc5Nk-YiaE8za2qLz2Jo9cSp3AgoJnFZAXpum0idHZOu35dqP5bj0S9nB6qHP0h7Lk9k_",
+            }}
+          >
             <PayPalButtons
               style={{ layout: "vertical" }}
               createOrder={(data, actions) => {
                 return actions.order.create({
-                  purchase_units: [{
-                    amount: { value: totalAmount.toFixed(2) },
-                  }],
+                  purchase_units: [
+                    {
+                      amount: { value: totalAmount.toFixed(2) },
+                    },
+                  ],
                 });
               }}
               onApprove={async (data, actions) => {
@@ -116,8 +139,11 @@ const ConfirmPayment = ({ service, onClose }) => {
                 handleFormSubmit(order.id);
               }}
               onError={() => {
-                setPaymentStatus({ success: false, message: 'Payment failed. Please try again.' });
-                toast.error('Payment failed. Please try again.');
+                setPaymentStatus({
+                  success: false,
+                  message: "Payment failed. Please try again.",
+                });
+                toast.error("Payment failed. Please try again.");
               }}
             />
           </PayPalScriptProvider>

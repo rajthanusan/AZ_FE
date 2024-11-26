@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
-import axios from 'axios';
-import { FaCalendarCheck, FaCheckCircle } from 'react-icons/fa';
-import ConfirmPaymentplan from './ConfirmPaymentplan';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import '../style/Plans.css'
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
+import axios from "axios";
+import { FaCalendarCheck, FaCheckCircle } from "react-icons/fa";
+import ConfirmPaymentplan from "./ConfirmPaymentplan";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../style/Plans.css";
 
 const PlanDescription = ({ description }) => {
-  const features = description.split(',');
+  const features = description.split(",");
   return (
     <ul className="plan-description">
       {features.map((feature, index) => (
         <li key={index} className="d-flex align-items-center">
-          <FaCheckCircle size={18} className="me-2" style={{ color: '#f0a6a6' }} />
+          <FaCheckCircle
+            size={18}
+            className="me-2"
+            style={{ color: "#f0a6a6" }}
+          />
 
           <span>{feature.trim()}</span>
         </li>
@@ -33,10 +37,12 @@ const Plans = () => {
 
   const fetchPlans = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/service-plans');
+      const response = await axios.get(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/service-plans"
+      );
       setPlans(response.data);
     } catch (error) {
-      console.error('Error fetching plans:', error);
+      console.error("Error fetching plans:", error);
     }
   };
 
@@ -54,16 +60,27 @@ const Plans = () => {
     <>
       <section id="plans" className="service-plans-section">
         <Container>
-        <h2 className="display-5 mb-5 cheading text-center">
+          <h2 className="display-5 mb-5 cheading text-center">
             Choose Your <span className="highlight">Perfect Plan</span>
           </h2>
           <Row className="justify-content-center">
             {plans.map((plan) => (
-              <Col xs={12} sm={12} md={6} lg={4} key={plan._id} className="mb-4">
+              <Col
+                xs={12}
+                sm={12}
+                md={6}
+                lg={4}
+                key={plan._id}
+                className="mb-4"
+              >
                 <Card className="plan-card">
                   <Card.Body className="d-flex flex-column align-items-center">
-                    <h3 className="plan-title"style={{ color: 'black' }}>{plan.planType} Plan</h3>
-                    <h4 className="plan-price">${plan.planAmount.toFixed(2)}</h4>
+                    <h3 className="plan-title" style={{ color: "black" }}>
+                      {plan.planType} Plan
+                    </h3>
+                    <h4 className="plan-price">
+                      ${plan.planAmount.toFixed(2)}
+                    </h4>
                     <PlanDescription description={plan.planDescription} />
                     <Button
                       variant="primary"
@@ -138,7 +155,7 @@ export default Plans;
 
 //   const fetchPlans = async () => {
 //     try {
-//       const response = await axios.get('http://localhost:5000/api/service-plans');
+//       const response = await axios.get('${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/service-plans');
 //       setPlans(response.data);
 //     } catch (error) {
 //       console.error('Error fetching plans:', error);
@@ -202,7 +219,7 @@ export default Plans;
 //                   backgroundColor: '#D97D7D',
 //                   borderColor: '#8f2347',
 //                    fontWeight:'900',
-                   
+
 //                 }}
 //                 onClick={() => handleChoosePlan(plan)}
 //               >
@@ -274,7 +291,7 @@ export default Plans;
 
 // //   const fetchPlans = async () => {
 // //     try {
-// //       const response = await axios.get('http://localhost:5000/api/service-plans');
+// //       const response = await axios.get('${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/service-plans');
 // //       setPlans(response.data);
 // //     } catch (error) {
 // //       console.error('Error fetching plans:', error);
@@ -293,7 +310,7 @@ export default Plans;
 
 // //   return (
 // //     <>
-// //       <section id="plans" className="py-5" 
+// //       <section id="plans" className="py-5"
 // //       // style={{ background: 'linear-gradient(135deg, #921A40 0%, #C75B7A 50%, #D9ABAB 100%)' }}
 // //       >
 // //         <Container>

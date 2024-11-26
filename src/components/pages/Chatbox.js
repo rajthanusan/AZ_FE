@@ -11,7 +11,7 @@
 
 // //     try {
 // //       const response = await axios.post(
-// //         "http://localhost:5000/api/aichat/chat", // Request to your backend
+// //         "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/aichat/chat", // Request to your backend
 // //         {
 // //           message: text, // Send the user input to the backend
 // //         }
@@ -80,7 +80,7 @@
 //     setIsLoading(true);
 
 //     try {
-//       const response = await axios.post("http://localhost:5000/api/aichat/chat", {
+//       const response = await axios.post("${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/aichat/chat", {
 //         message: input,
 //       });
 //       const botMessage = { text: response.data.response, sender: "bot" };
@@ -98,7 +98,7 @@
 //   };
 
 //   return (
-    
+
 //     <div className="chatbot-container">
 //       <div className="chat-header">AI Assistant</div>
 //       <div className="chat-messages">

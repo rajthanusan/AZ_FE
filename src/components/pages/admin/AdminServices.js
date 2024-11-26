@@ -21,7 +21,7 @@
 
 //   const fetchServices = async () => {
 //     try {
-//       const response = await axios.get('http://localhost:5000/api/services');
+//       const response = await axios.get('${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services');
 //       setServices(response.data);
 //     } catch (error) {
 //       console.error('Error fetching services:', error);
@@ -56,16 +56,16 @@
 //     try {
 //       if (editingServiceId) {
 //         // Update service
-//         await axios.put(`http://localhost:5000/api/services/${editingServiceId}`, formDataToSend, {
+//         await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services/${editingServiceId}`, formDataToSend, {
 //           headers: { 'Content-Type': 'multipart/form-data' }
 //         });
 //       } else {
 //         // Create new service
-//         await axios.post('http://localhost:5000/api/services', formDataToSend, {
+//         await axios.post('${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services', formDataToSend, {
 //           headers: { 'Content-Type': 'multipart/form-data' }
 //         });
 //       }
-      
+
 //       // Clear the form after submission
 //       setFormData({ serviceName: '', serviceDescription: '', serviceAmountPerHour: '', serviceImage: null });
 //       setEditingServiceId(null);
@@ -87,7 +87,7 @@
 
 //   const handleDelete = async (id) => {
 //     try {
-//       await axios.delete(`http://localhost:5000/api/services/${id}`);
+//       await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services/${id}`);
 //       fetchServices();
 //     } catch (error) {
 //       console.error('Error deleting service:', error);
@@ -108,9 +108,8 @@
 //     <section id="services" className="py-4">
 //       <Container fluid>
 //       <h2 className="display-5 mb-3 cheading">
-//           Manage <span>Services</span> 
+//           Manage <span>Services</span>
 //         </h2>
-       
 
 //         {/* Form for adding or editing services */}
 //         <Row>
@@ -192,7 +191,7 @@
 //                     <td>
 //                       {service.serviceImage && (
 //                         <img
-//                           src={`http://localhost:5000/uploads/${service.serviceImage}`}
+//                           src={`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/uploads/${service.serviceImage}`}
 //                           alt={service.serviceName}
 //                           width="50"
 //                         />
@@ -258,7 +257,7 @@
 //             )}
 //           </Card.Body>
 //         </Card>
-        
+
 //       </Container>
 //     </section>
 //   );
@@ -266,16 +265,24 @@
 
 // export default AdminServices;
 
-import React, { useState, useEffect } from 'react';
-import { Container, Card, Button, Form, Table, Pagination, Modal } from 'react-bootstrap';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Card,
+  Button,
+  Form,
+  Table,
+  Pagination,
+  Modal,
+} from "react-bootstrap";
+import axios from "axios";
 
 const AdminServices = () => {
   const [services, setServices] = useState([]);
   const [formData, setFormData] = useState({
-    serviceName: '',
-    serviceDescription: '',
-    serviceAmountPerHour: '',
+    serviceName: "",
+    serviceDescription: "",
+    serviceAmountPerHour: "",
     serviceImage: null,
   });
   const [editingServiceId, setEditingServiceId] = useState(null);
@@ -290,58 +297,78 @@ const AdminServices = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/services');
+      const response = await axios.get(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services"
+      );
       setServices(response.data);
     } catch (error) {
-      console.error('Error fetching services:', error);
+      console.error("Error fetching services:", error);
     }
   };
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleImageChange = (e) => {
     setFormData({
       ...formData,
-      serviceImage: e.target.files[0]
+      serviceImage: e.target.files[0],
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
-    formDataToSend.append('serviceName', formData.serviceName);
-    formDataToSend.append('serviceDescription', formData.serviceDescription);
-    formDataToSend.append('serviceAmountPerHour', formData.serviceAmountPerHour);
+    formDataToSend.append("serviceName", formData.serviceName);
+    formDataToSend.append("serviceDescription", formData.serviceDescription);
+    formDataToSend.append(
+      "serviceAmountPerHour",
+      formData.serviceAmountPerHour
+    );
 
     if (formData.serviceImage) {
-      formDataToSend.append('serviceImage', formData.serviceImage);
+      formDataToSend.append("serviceImage", formData.serviceImage);
     }
 
     try {
       if (editingServiceId) {
         // Update service
-        await axios.put(`http://localhost:5000/api/services/${editingServiceId}`, formDataToSend, {
-          headers: { 'Content-Type': 'multipart/form-data' }
-        });
+        await axios.put(
+          `${
+            import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
+          }/api/services/${editingServiceId}`,
+          formDataToSend,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
       } else {
         // Create new service
-        await axios.post('http://localhost:5000/api/services', formDataToSend, {
-          headers: { 'Content-Type': 'multipart/form-data' }
-        });
+        await axios.post(
+          "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services",
+          formDataToSend,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
       }
-      
+
       // Clear the form after submission
-      setFormData({ serviceName: '', serviceDescription: '', serviceAmountPerHour: '', serviceImage: null });
+      setFormData({
+        serviceName: "",
+        serviceDescription: "",
+        serviceAmountPerHour: "",
+        serviceImage: null,
+      });
       setEditingServiceId(null);
       fetchServices();
       setShowModal(false); // Close the modal after submit
     } catch (error) {
-      console.error('Error submitting service:', error);
+      console.error("Error submitting service:", error);
     }
   };
 
@@ -351,24 +378,29 @@ const AdminServices = () => {
       serviceName: service.serviceName,
       serviceDescription: service.serviceDescription,
       serviceAmountPerHour: service.serviceAmountPerHour,
-      serviceImage: null
+      serviceImage: null,
     });
     setShowModal(true); // Show the modal when editing a service
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/services/${id}`);
+      await axios.delete(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services/${id}`
+      );
       fetchServices();
     } catch (error) {
-      console.error('Error deleting service:', error);
+      console.error("Error deleting service:", error);
     }
   };
 
   // Pagination logic
   const indexOfLastService = currentPage * servicesPerPage;
   const indexOfFirstService = indexOfLastService - servicesPerPage;
-  const currentServices = services.slice(indexOfFirstService, indexOfLastService);
+  const currentServices = services.slice(
+    indexOfFirstService,
+    indexOfLastService
+  );
   const totalPages = Math.ceil(services.length / servicesPerPage);
 
   const handlePageChange = (pageNumber) => {
@@ -379,20 +411,24 @@ const AdminServices = () => {
     <section id="services" className="py-4">
       <Container fluid>
         <h2 className="display-5 mb-3 cheading">
-          Manage <span>Services</span> 
+          Manage <span>Services</span>
         </h2>
 
         {/* Button to trigger modal for adding a new service */}
-        <Button variant="primary" onClick={() => setShowModal(true)}  className='custom-button mt-3'>
+        <Button
+          variant="primary"
+          onClick={() => setShowModal(true)}
+          className="custom-button mt-3"
+        >
           Add New Service
         </Button>
-        
-            
 
         {/* Modal for adding or editing services */}
         <Modal show={showModal} onHide={() => setShowModal(false)} centered>
           <Modal.Header closeButton>
-            <Modal.Title>{editingServiceId ? 'Edit Service' : 'Add New Service'}</Modal.Title>
+            <Modal.Title>
+              {editingServiceId ? "Edit Service" : "Add New Service"}
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -436,21 +472,24 @@ const AdminServices = () => {
                   onChange={handleImageChange}
                 />
               </Form.Group>
-              <br/>
-              <Button variant="primary" type="submit" className='custom-button '>
-                {editingServiceId ? 'Update Service' : 'Add Service'}
+              <br />
+              <Button
+                variant="primary"
+                type="submit"
+                className="custom-button "
+              >
+                {editingServiceId ? "Update Service" : "Add Service"}
               </Button>
-              <br/>
+              <br />
             </Form>
           </Modal.Body>
         </Modal>
-        
 
         {/* Table to display all services */}
         <Card className="shadow-lg border-0">
           <Card.Body>
             <Table striped bordered hover responsive>
-              <thead style={{ backgroundColor: '#8f2347', color: 'white' }}>
+              <thead style={{ backgroundColor: "#8f2347", color: "white" }}>
                 <tr>
                   <th>Service Name</th>
                   <th>Description</th>
@@ -468,7 +507,9 @@ const AdminServices = () => {
                     <td>
                       {service.serviceImage && (
                         <img
-                          src={`http://localhost:5000/uploads/${service.serviceImage}`}
+                          src={`${
+                            import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
+                          }/uploads/${service.serviceImage}`}
                           alt={service.serviceName}
                           width="50"
                         />

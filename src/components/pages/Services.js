@@ -1,10 +1,18 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Container, Row, Col, Card, Button, Carousel, Modal } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Carousel,
+  Modal,
+} from "react-bootstrap";
 import axios from "axios";
 import ConfirmPayment from "./ConfirmPayment";
 
 const Services = () => {
-  const [ setServices] = useState([]);
+  const [setServices] = useState([]);
   const [groupedServices, setGroupedServices] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
@@ -12,7 +20,9 @@ const Services = () => {
   // Use useCallback to memoize the function
   const fetchServices = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/services");
+      const response = await axios.get(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/services"
+      );
       setServices(response.data);
       groupServices(response.data);
     } catch (error) {
@@ -55,8 +65,7 @@ const Services = () => {
     >
       <Container>
         <h2 className="display-5 mb-3 cheading">
-        
-        Additional <span>Services</span>
+          Additional <span>Services</span>
         </h2>
 
         <Carousel
@@ -84,96 +93,99 @@ const Services = () => {
                     className="mb-4"
                   >
                     <Card
-  className="text-center p-3 h-100 service-card" // Reduced padding here
-  style={{
-    border: "none",
-    boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)",
-    borderRadius: "20px",
-    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-    cursor: "pointer",
-    height: "350px", // Adjust the height of the entire card
-  }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.transform = "scale(1.05)";
-    e.currentTarget.style.boxShadow =
-      "0 12px 40px rgba(0, 0, 0, 0.2)";
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.transform = "scale(1)";
-    e.currentTarget.style.boxShadow =
-      "0 8px 30px rgba(0, 0, 0, 0.1)";
-  }}
->
-  {service.serviceImage && (
-    <Card.Img
-      variant="top"
-      src={`http://localhost:5000/uploads/${service.serviceImage}`}
-      style={{
-        height: "150px", // Reduced height for image
-        objectFit: "cover",
-        borderRadius: "10px",
-        border: "5px solid #113047",
-      }}
-    />
-  )}
-  <Card.Body className="d-flex flex-column justify-content-between">
-    <h5
-      style={{
-        color: "#ff4d4d",
-        fontWeight: "bold",
-        textTransform: "uppercase",
-        letterSpacing: "1px",
-        fontSize: "1.2rem",
-        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)",
-      }}
-    >
-      {service.serviceName}
-    </h5>
-    <p
-      style={{
-        color: "#4f4f4f",
-        fontSize: "0.9rem",
-        marginBottom: "20px",
-      }}
-    >
-      {service.serviceDescription}
-    </p>
-    <h6
-      style={{
-        color: "#2c3e50",
-        fontWeight: "bold",
-        fontSize: "1.1rem",
-      }}
-    >
-      ${service.serviceAmountPerHour} / hour
-    </h6>
-    <Button
-      variant="primary"
-      className="custom-button"
-      style={{
-        padding: "8px 20px", // Adjust padding to reduce button size
-      }}
-      onMouseEnter={(e) =>
-        (e.target.style.backgroundColor = 'rgb(255, 102, 102)')
-      }
-      onMouseLeave={(e) =>
-        (e.target.style.backgroundColor = "rgb(255, 102, 102)")
-      }
-      onClick={() => handleBookNow(service)}
-    >
-      Book Now
-    </Button>
-  </Card.Body>
-</Card>
-
+                      className="text-center p-3 h-100 service-card" // Reduced padding here
+                      style={{
+                        border: "none",
+                        boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)",
+                        borderRadius: "20px",
+                        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                        cursor: "pointer",
+                        height: "350px", // Adjust the height of the entire card
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = "scale(1.05)";
+                        e.currentTarget.style.boxShadow =
+                          "0 12px 40px rgba(0, 0, 0, 0.2)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "scale(1)";
+                        e.currentTarget.style.boxShadow =
+                          "0 8px 30px rgba(0, 0, 0, 0.1)";
+                      }}
+                    >
+                      {service.serviceImage && (
+                        <Card.Img
+                          variant="top"
+                          src={`${
+                            import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
+                          }/uploads/${service.serviceImage}`}
+                          style={{
+                            height: "150px", // Reduced height for image
+                            objectFit: "cover",
+                            borderRadius: "10px",
+                            border: "5px solid #113047",
+                          }}
+                        />
+                      )}
+                      <Card.Body className="d-flex flex-column justify-content-between">
+                        <h5
+                          style={{
+                            color: "#ff4d4d",
+                            fontWeight: "bold",
+                            textTransform: "uppercase",
+                            letterSpacing: "1px",
+                            fontSize: "1.2rem",
+                            textShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)",
+                          }}
+                        >
+                          {service.serviceName}
+                        </h5>
+                        <p
+                          style={{
+                            color: "#4f4f4f",
+                            fontSize: "0.9rem",
+                            marginBottom: "20px",
+                          }}
+                        >
+                          {service.serviceDescription}
+                        </p>
+                        <h6
+                          style={{
+                            color: "#2c3e50",
+                            fontWeight: "bold",
+                            fontSize: "1.1rem",
+                          }}
+                        >
+                          ${service.serviceAmountPerHour} / hour
+                        </h6>
+                        <Button
+                          variant="primary"
+                          className="custom-button"
+                          style={{
+                            padding: "8px 20px", // Adjust padding to reduce button size
+                          }}
+                          onMouseEnter={(e) =>
+                            (e.target.style.backgroundColor =
+                              "rgb(255, 102, 102)")
+                          }
+                          onMouseLeave={(e) =>
+                            (e.target.style.backgroundColor =
+                              "rgb(255, 102, 102)")
+                          }
+                          onClick={() => handleBookNow(service)}
+                        >
+                          Book Now
+                        </Button>
+                      </Card.Body>
+                    </Card>
                   </Col>
                 ))}
               </Row>
             </Carousel.Item>
           ))}
         </Carousel>
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         {selectedService && (
           <Modal
@@ -201,12 +213,12 @@ const Services = () => {
               <Modal.Title>Confirm Payment</Modal.Title>
             </Modal.Header>
             <Modal.Body
-              // style={{
-              //   backgroundColor: "#fff",
-              //   padding: "30px",
-              //   borderRadius: "15px",
-              //   boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)",
-              // }}
+            // style={{
+            //   backgroundColor: "#fff",
+            //   padding: "30px",
+            //   borderRadius: "15px",
+            //   boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)",
+            // }}
             >
               <ConfirmPayment service={selectedService} onClose={closeModal} />
             </Modal.Body>
@@ -214,7 +226,6 @@ const Services = () => {
         )}
       </Container>
     </section>
-    
   );
 };
 

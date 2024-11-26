@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Form, Table, Pagination, ButtonGroup } from 'react-bootstrap';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Form,
+  Table,
+  Pagination,
+  ButtonGroup,
+} from "react-bootstrap";
+import axios from "axios";
 
 const AdminPlans = () => {
   const [plans, setPlans] = useState([]);
   const [formData, setFormData] = useState({
-    planType: '',
-    planDescription: '',
-    planAmount: ''
+    planType: "",
+    planDescription: "",
+    planAmount: "",
   });
   const [editingPlanId, setEditingPlanId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,28 +29,38 @@ const AdminPlans = () => {
 
   const fetchPlans = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/service-plans');
+      const response = await axios.get(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/service-plans"
+      );
       setPlans(response.data);
     } catch (error) {
-      console.error('Error fetching plans:', error);
+      console.error("Error fetching plans:", error);
     }
   };
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (editingPlanId) {
-      await axios.put(`http://localhost:5000/api/service-plans/${editingPlanId}`, formData);
+      await axios.put(
+        `${
+          import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
+        }/api/service-plans/${editingPlanId}`,
+        formData
+      );
     } else {
-      await axios.post('http://localhost:5000/api/service-plans', formData);
+      await axios.post(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/service-plans",
+        formData
+      );
     }
-    setFormData({ planType: '', planDescription: '', planAmount: '' });
+    setFormData({ planType: "", planDescription: "", planAmount: "" });
     setEditingPlanId(null);
     fetchPlans();
   };
@@ -50,16 +70,20 @@ const AdminPlans = () => {
     setFormData({
       planType: plan.planType,
       planDescription: plan.planDescription,
-      planAmount: plan.planAmount
+      planAmount: plan.planAmount,
     });
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/service-plans/${id}`);
+      await axios.delete(
+        `${
+          import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
+        }/api/service-plans/${id}`
+      );
       fetchPlans();
     } catch (error) {
-      console.error('Error deleting plan:', error);
+      console.error("Error deleting plan:", error);
     }
   };
 
@@ -75,62 +99,65 @@ const AdminPlans = () => {
   return (
     <section id="plans" className="py-4">
       <Container>
-      <h2 className="display-5 mb-3 cheading">
+        <h2 className="display-5 mb-3 cheading">
           Manage <span>Service</span> Plans
         </h2>
-        
-       
+
         {/* Form for adding or editing service plans */}
         <Row>
-  <Col md={12} className="mx-auto">
-    <Card className="p-4 shadow-lg mb-4">
-      <h4>{editingPlanId ? 'Edit Plan' : 'Add New Plan'}</h4>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Plan Type</Form.Label>
-          <Form.Control
-            type="text"
-            name="planType"
-            value={formData.planType}
-            onChange={handleInputChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Plan Description</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            name="planDescription"
-            value={formData.planDescription}
-            onChange={handleInputChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Plan Amount ($)</Form.Label>
-          <Form.Control
-            type="number"
-            name="planAmount"
-            value={formData.planAmount}
-            onChange={handleInputChange}
-            required
-          />
-        </Form.Group>
-        <div className="d-flex justify-content-center mt-3">
-          <Button variant="primary" type="submit" className="custom-button">
-            {editingPlanId ? 'Update Plan' : 'Add Plan'}
-          </Button>
-        </div>
-      </Form>
-    </Card>
-  </Col>
-</Row>
+          <Col md={12} className="mx-auto">
+            <Card className="p-4 shadow-lg mb-4">
+              <h4>{editingPlanId ? "Edit Plan" : "Add New Plan"}</h4>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Plan Type</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="planType"
+                    value={formData.planType}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Plan Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    name="planDescription"
+                    value={formData.planDescription}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Plan Amount ($)</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="planAmount"
+                    value={formData.planAmount}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+                <div className="d-flex justify-content-center mt-3">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="custom-button"
+                  >
+                    {editingPlanId ? "Update Plan" : "Add Plan"}
+                  </Button>
+                </div>
+              </Form>
+            </Card>
+          </Col>
+        </Row>
         {/* Table to display all service plans */}
         <Card className="shadow-lg border-0">
           <Card.Body>
             <Table striped bordered hover responsive>
-              <thead style={{ backgroundColor: '#8f2347', color: 'white' }}>
+              <thead style={{ backgroundColor: "#8f2347", color: "white" }}>
                 <tr>
                   <th>Plan Type</th>
                   <th>Description</th>
@@ -150,9 +177,9 @@ const AdminPlans = () => {
                           variant="danger"
                           className="flex-fill mx-1"
                           style={{
-                            backgroundColor: '#e63946',
-                            borderColor: '#e63946',
-                            borderRadius: '5px',
+                            backgroundColor: "#e63946",
+                            borderColor: "#e63946",
+                            borderRadius: "5px",
                           }}
                           onClick={() => handleEdit(plan)}
                         >
@@ -162,9 +189,9 @@ const AdminPlans = () => {
                           variant="danger"
                           className="flex-fill mx-1"
                           style={{
-                            backgroundColor: '#e63946',
-                            borderColor: '#e63946',
-                            borderRadius: '5px',
+                            backgroundColor: "#e63946",
+                            borderColor: "#e63946",
+                            borderRadius: "5px",
                           }}
                           onClick={() => handleDelete(plan._id)}
                         >

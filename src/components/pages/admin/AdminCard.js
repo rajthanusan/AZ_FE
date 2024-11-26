@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Button, Table, Pagination, Modal, Card } from 'react-bootstrap';
-import axios from 'axios';
-
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Table,
+  Pagination,
+  Modal,
+  Card,
+} from "react-bootstrap";
+import axios from "axios";
 
 const AdminCard = () => {
   const [serviceBookings, setServiceBookings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const bookingsPerPage = 5;
-  const BASE_URL = 'http://localhost:5000/uploads/';
+  const BASE_URL = "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/uploads/";
   const [showModal, setShowModal] = useState(false);
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
     fetchServiceBookings();
@@ -17,26 +25,33 @@ const AdminCard = () => {
 
   const fetchServiceBookings = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/bookings');
+      const response = await axios.get(
+        "${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookings"
+      );
       setServiceBookings(response.data);
     } catch (error) {
-      console.error('Error fetching bookings:', error);
+      console.error("Error fetching bookings:", error);
     }
   };
 
   const indexOfLastBooking = currentPage * bookingsPerPage;
   const indexOfFirstBooking = indexOfLastBooking - bookingsPerPage;
-  const currentBookings = serviceBookings.slice(indexOfFirstBooking, indexOfLastBooking);
+  const currentBookings = serviceBookings.slice(
+    indexOfFirstBooking,
+    indexOfLastBooking
+  );
   const totalPages = Math.ceil(serviceBookings.length / bookingsPerPage);
 
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleDeleteBooking = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/bookings/${id}`);
+      await axios.delete(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/bookings/${id}`
+      );
       fetchServiceBookings();
     } catch (error) {
-      console.error('Error deleting booking:', error);
+      console.error("Error deleting booking:", error);
     }
   };
 
@@ -47,23 +62,22 @@ const AdminCard = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setSelectedImage('');
+    setSelectedImage("");
   };
 
   return (
     <section id="bookings" className="py-4">
       <Container>
-      <h2 className="display-5 mb-3 cheading">
-      Manage <span>Plans </span> Bookings
-            </h2>
-        
+        <h2 className="display-5 mb-3 cheading">
+          Manage <span>Plans </span> Bookings
+        </h2>
 
         <Row>
           <Col>
             <Card className="shadow-lg border-0">
               <Card.Body>
                 <Table striped bordered hover responsive>
-                  <thead style={{ backgroundColor: '#8f2347', color: 'white' }}>
+                  <thead style={{ backgroundColor: "#8f2347", color: "white" }}>
                     <tr>
                       <th>Plan Name</th>
                       <th>Service Location</th>
@@ -86,33 +100,42 @@ const AdminCard = () => {
                           <td>{booking.planemail}</td>
                           <td>{booking.planduration}</td>
                           <td>
-                            ${booking.plantotalAmount !== undefined ? booking.plantotalAmount.toFixed(2) : 'N/A'}
+                            $
+                            {booking.plantotalAmount !== undefined
+                              ? booking.plantotalAmount.toFixed(2)
+                              : "N/A"}
                           </td>
-                          <td>{new Date(booking.createdAt).toLocaleString()}</td>
+                          <td>
+                            {new Date(booking.createdAt).toLocaleString()}
+                          </td>
                           <td>
                             {booking.serviceImage ? (
                               <img
                                 src={`${BASE_URL}${booking.serviceImage}`}
                                 alt="Service Booking"
                                 style={{
-                                  width: '50px',
-                                  height: '50px',
-                                  objectFit: 'cover',
-                                  cursor: 'pointer',
+                                  width: "50px",
+                                  height: "50px",
+                                  objectFit: "cover",
+                                  cursor: "pointer",
                                 }}
-                                onClick={() => handleImageClick(`${BASE_URL}${booking.serviceImage}`)}
+                                onClick={() =>
+                                  handleImageClick(
+                                    `${BASE_URL}${booking.serviceImage}`
+                                  )
+                                }
                               />
                             ) : (
-                              'No Image'
+                              "No Image"
                             )}
                           </td>
                           <td>
                             <Button
                               variant="danger"
                               style={{
-                                backgroundColor: '#e63946',
-                                borderColor: '#e63946',
-                                borderRadius: '5px',
+                                backgroundColor: "#e63946",
+                                borderColor: "#e63946",
+                                borderRadius: "5px",
                               }}
                               onClick={() => handleDeleteBooking(booking._id)}
                             >
@@ -176,7 +199,7 @@ const AdminCard = () => {
           <img
             src={selectedImage}
             alt="Enlarged Service Booking"
-            style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+            style={{ width: "100%", height: "auto", borderRadius: "8px" }}
           />
         </Modal.Body>
       </Modal>
