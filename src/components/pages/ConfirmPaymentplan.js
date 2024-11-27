@@ -32,13 +32,16 @@ const ConfirmPaymentPlan = ({ planId, planType, planAmount, onClose }) => {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/booking", {
-        params: {
-          user: username,
-          serviceName: planType,
-          serviceLocation: serviceLocation,
-        },
-      });
+      const response = await axios.get(
+        "https://az-be-nine.vercel.app/api/booking",
+        {
+          params: {
+            user: username,
+            serviceName: planType,
+            serviceLocation: serviceLocation,
+          },
+        }
+      );
 
       const existingBookings = response.data;
 
@@ -106,7 +109,7 @@ const ConfirmPaymentPlan = ({ planId, planType, planAmount, onClose }) => {
         formData.append("serviceImage", uploadedImage);
       }
 
-      await axios.post("http://localhost:5000/api/bookings", formData, {
+      await axios.post("https://az-be-nine.vercel.app/api/bookings", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

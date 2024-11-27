@@ -14,7 +14,7 @@ const AdminCardService = () => {
   const fetchServiceBookings = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/bookingservice"
+        "https://az-be-nine.vercel.app/api/bookingservice"
       );
       setServiceBookings(response.data);
     } catch (error) {

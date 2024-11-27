@@ -30,7 +30,7 @@ const AdminPlans = () => {
   const fetchPlans = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/service-plans"
+        "https://az-be-nine.vercel.app/api/service-plans"
       );
       setPlans(response.data);
     } catch (error) {
@@ -55,7 +55,10 @@ const AdminPlans = () => {
         formData
       );
     } else {
-      await axios.post("http://localhost:5000/api/service-plans", formData);
+      await axios.post(
+        "https://az-be-nine.vercel.app/api/service-plans",
+        formData
+      );
     }
     setFormData({ planType: "", planDescription: "", planAmount: "" });
     setEditingPlanId(null);

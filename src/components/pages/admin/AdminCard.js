@@ -15,7 +15,7 @@ const AdminCard = () => {
   const [serviceBookings, setServiceBookings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const bookingsPerPage = 5;
-  const BASE_URL = "http://localhost:5000/uploads/";
+  const BASE_URL = "https://az-be-nine.vercel.app/uploads/";
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
 
@@ -25,7 +25,9 @@ const AdminCard = () => {
 
   const fetchServiceBookings = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/bookings");
+      const response = await axios.get(
+        "https://az-be-nine.vercel.app/api/bookings"
+      );
       setServiceBookings(response.data);
     } catch (error) {
       console.error("Error fetching bookings:", error);
@@ -44,7 +46,7 @@ const AdminCard = () => {
 
   const handleDeleteBooking = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/bookings/${id}`);
+      await axios.delete(`https://az-be-nine.vercel.app/api/bookings/${id}`);
       fetchServiceBookings();
     } catch (error) {
       console.error("Error deleting booking:", error);

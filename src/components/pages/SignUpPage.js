@@ -32,13 +32,16 @@ const SignUpPage = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://az-be-nine.vercel.app/api/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         toast.success("Sign up successful! Please log in.");
@@ -166,7 +169,7 @@ export default SignUpPage;
 //     }
 
 //     try {
-//       const response = await fetch('http://localhost:5000/api/register', {
+//       const response = await fetch('https://az-be-nine.vercel.app/api/register', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -311,7 +314,7 @@ export default SignUpPage;
 //     }
 
 //     try {
-//       const response = await fetch('http://localhost:5000/api/register', {
+//       const response = await fetch('https://az-be-nine.vercel.app/api/register', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -494,7 +497,7 @@ export default SignUpPage;
 //     }
 
 //     try {
-//       const response = await fetch('http://localhost:5000/api/register', {
+//       const response = await fetch('https://az-be-nine.vercel.app/api/register', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',

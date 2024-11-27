@@ -6,7 +6,7 @@ import "../style/CustomizeRoomSection.css";
 
 const CustomizeRoomSection = () => {
   const navigate = useNavigate();
- 
+  const token = localStorage.getItem("token"); // Get the token directly
 
   const handleCartClick = () => {
     window.scrollTo({
@@ -14,8 +14,12 @@ const CustomizeRoomSection = () => {
       behavior: "smooth",
     });
 
-    // Always redirect to the room-design page
-    navigate("/room-design");
+    // Check if the user is logged in; redirect accordingly
+    if (token) {
+      navigate("/room-design");
+    } else {
+      navigate("/login?redirect=/room-design");
+    }
   };
 
   return (

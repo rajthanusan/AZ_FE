@@ -11,7 +11,7 @@
 
 // //     try {
 // //       const response = await axios.post(
-// //         "http://localhost:5000/api/aichat/chat", // Request to your backend
+// //         "https://az-be-nine.vercel.app/api/aichat/chat", // Request to your backend
 // //         {
 // //           message: text, // Send the user input to the backend
 // //         }
@@ -80,7 +80,7 @@
 //     setIsLoading(true);
 
 //     try {
-//       const response = await axios.post("http://localhost:5000/api/aichat/chat", {
+//       const response = await axios.post("https://az-be-nine.vercel.app/api/aichat/chat", {
 //         message: input,
 //       });
 //       const botMessage = { text: response.data.response, sender: "bot" };

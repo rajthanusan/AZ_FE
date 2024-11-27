@@ -25,7 +25,7 @@ const Card = () => {
     const fetchServiceBookings = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/bookingservice"
+          "https://az-be-nine.vercel.app/api/bookingservice"
         );
         if (!response.ok) throw new Error("Failed to fetch service bookings");
         const data = await response.json();
@@ -43,7 +43,9 @@ const Card = () => {
 
     const fetchPlanBookings = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/bookings");
+        const response = await fetch(
+          "https://az-be-nine.vercel.app/api/bookings"
+        );
         if (!response.ok) throw new Error("Failed to fetch plan bookings");
         const data = await response.json();
         const userPlanBookings = data.filter(

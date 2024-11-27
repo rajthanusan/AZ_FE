@@ -33,7 +33,7 @@ const ConfirmPayment = ({ service, onClose }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/bookingservice",
+        "https://az-be-nine.vercel.app/api/bookingservice",
         bookingData
       );
       setPaymentStatus({ success: true, message: response.data.message });

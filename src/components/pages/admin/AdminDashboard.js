@@ -41,11 +41,11 @@ const AdminDashboard = () => {
           packageData,
           serviceData,
         ] = await Promise.all([
-          axios.get("http://localhost:5000/api/bookings"),
-          axios.get("http://localhost:5000/api/bookingservice"),
-          axios.get("http://localhost:5000/api/users"),
-          axios.get("http://localhost:5000/api/service-plans"),
-          axios.get("http://localhost:5000/api/services"),
+          axios.get("https://az-be-nine.vercel.app/api/bookings"),
+          axios.get("https://az-be-nine.vercel.app/api/bookingservice"),
+          axios.get("https://az-be-nine.vercel.app/api/users"),
+          axios.get("https://az-be-nine.vercel.app/api/service-plans"),
+          axios.get("https://az-be-nine.vercel.app/api/services"),
         ]);
 
         setBookings(bookingData.data);

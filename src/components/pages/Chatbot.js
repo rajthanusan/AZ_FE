@@ -25,7 +25,7 @@ function Chatbot() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/aichat/chat",
+        "https://az-be-nine.vercel.app/api/aichat/chat",
         {
           message: input,
         }
