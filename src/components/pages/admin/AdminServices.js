@@ -337,10 +337,8 @@ const AdminServices = () => {
     try {
       if (editingServiceId) {
         // Update service
-        await axios.put(
-          `${
-            import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
-          }/api/services/${editingServiceId}`,
+        await axios.put(`https://az-be-nine.vercel.app/api/services/${editingServiceId}`
+          ,
           formDataToSend,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -505,9 +503,7 @@ const AdminServices = () => {
                     <td>
                       {service.serviceImage && (
                         <img
-                          src={`${
-                            import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
-                          }/uploads/${service.serviceImage}`}
+                          src={`https://az-be-nine.vercel.app/uploads/${service.serviceImage}`}
                           alt={service.serviceName}
                           width="50"
                         />

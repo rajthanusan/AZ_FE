@@ -49,9 +49,7 @@ const AdminPlans = () => {
     e.preventDefault();
     if (editingPlanId) {
       await axios.put(
-        `${
-          import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
-        }/api/service-plans/${editingPlanId}`,
+        `https://az-be-nine.vercel.app/api/service-plans/${editingPlanId}`,
         formData
       );
     } else {
@@ -77,9 +75,7 @@ const AdminPlans = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `${
-          import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
-        }/api/service-plans/${id}`
+        `https://az-be-nine.vercel.app/api/service-plans/${id}`
       );
       fetchPlans();
     } catch (error) {

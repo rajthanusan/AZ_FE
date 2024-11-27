@@ -35,9 +35,7 @@ const AdminCardService = () => {
   const handleDeleteBooking = async (id) => {
     try {
       await axios.delete(
-        `${
-          import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
-        }/api/bookingservice/${id}`
+        `https://az-be-nine.vercel.app/api/bookingservice/${id}`
       );
       fetchServiceBookings(); // Refresh the list after deletion
     } catch (error) {

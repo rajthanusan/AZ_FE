@@ -43,9 +43,7 @@ const AdminUser = () => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         await fetch(
-          `${
-            import.meta.env.VITE_REACT_APP_BACKEND_BASEURL
-          }/api/users/${userId}`,
+          `https://az-be-nine.vercel.app/api/users/${userId}`,
           {
             method: "DELETE",
           }
