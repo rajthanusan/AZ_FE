@@ -115,16 +115,19 @@ const Services = () => {
                       }}
                     >
                       {service.serviceImage && (
-                        <Card.Img
-                          variant="top"
-                          src={`https://az-be-nine.vercel.app/uploads/${service.serviceImage}`}
-                          style={{
-                            height: "150px",
-                            objectFit: "cover",
-                            borderRadius: "10px",
-                            border: "5px solid #113047",
-                          }}
-                        />
+                  <Card.Img
+                  variant="top"
+                  src={`https://az-be-nine.vercel.app/uploads/${service.serviceImage}`}
+                  style={{
+                    height: "150px",
+                    objectFit: "cover",
+                    borderRadius: "10px",
+                    border: "5px solid #113047",
+                  }}
+                />
+                
+                  
+                     
                       )}
                       <Card.Body className="d-flex flex-column justify-content-between">
                         <h5

@@ -8,15 +8,8 @@
   --bot-message-bg: #F8E5E9;
   --user-message-bg: #E6F2FF;
 }
-h1,h2 {
-  font-family: 'Public Sans', Arial, sans-serif;
-  font-weight: 600;
-}
-body {
- 
-  font-size: 16px; /* You can adjust this size according to your design */
-  
-}
+
+
 footer {
   margin-top: auto;
 }
@@ -133,7 +126,7 @@ footer {
 }
 
 .custom-button:hover {
-  background-color: rgb(204, 51, 51); /* Darker shade of the original color */
+  background-color: rgb(255, 102, 102);
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
@@ -574,26 +567,57 @@ footer {
   color: #43121d; /* Icon color */
   font-size: 1.2rem;
 }
-.table td, .table th {
-  padding: 0.5rem;
-  font-size: 0.85rem;
-}
 
-/* Add this to your CSS file */
+/* //table */
+
+.table-responsive {
+  display: block; /* Ensure the table adapts as a block element */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  -webkit-overflow-scrolling: touch;
+}
 
 .table-container {
-  max-width: 80%; /* Set the width of the table to 80% of the container */
-  margin: auto; /* Center the table horizontally */
+  width: 100%; /* Use the full width of the parent container */
+  margin: auto;
 }
 
-.table-container table {
-  width: 100%; /* Make sure the table uses the full width of its container */
-  font-size: 14px; /* Optionally, reduce font size for compactness */
+.table {
+  width: 100%;
+  table-layout: fixed; /* Force equal column widths */
+  border-collapse: collapse; /* Remove extra spacing between cells */
 }
 
-.table-container th, .table-container td {
-  padding: 0.5rem; /* Reduce padding to make it more compact */
+.table th, .table td {
+  padding: 8px;
+  font-size: 14px;
+  text-align: center; /* Center-align text for consistency */
+  word-wrap: break-word; /* Break long words */
+  white-space: normal; /* Wrap text within cells */
 }
+
+.table img {
+  max-width: 100%; /* Ensure images fit within their cells */
+  height: auto;
+  object-fit: cover; /* Maintain image aspect ratio */
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .table th, .table td {
+    font-size: 12px; /* Reduce font size for small screens */
+    padding: 6px;
+  }
+
+  .table td img {
+    width: 40px; /* Scale down image size for small screens */
+    height: 40px;
+  }
+
+  .table th {
+    font-size: 11px;
+  }
+}
+
 
   /* background-color: #721433;  */
   .chatbot-icon {
@@ -656,4 +680,3 @@ footer {
   background: linear-gradient(90deg, #a20b0b, #f2a4a4);
   box-shadow: 0px 4px 10px rgba(0, 200, 255, 0.5);
 }
-
