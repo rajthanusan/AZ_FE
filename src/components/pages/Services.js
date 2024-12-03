@@ -1,41 +1,52 @@
-import React, { useState, useEffect, useCallback } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  Carousel,
-  Modal,
-} from "react-bootstrap";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { Container, Row, Col, Card, Button, Carousel, Modal } from "react-bootstrap";
 import axios from "axios";
 import ConfirmPayment from "./ConfirmPayment";
+
+import Image1 from "../Image/0.jpg";
+import Image2 from "../Image/1.jpg";
+import Image3 from "../Image/2.jpg";
+import Image4 from "../Image/3.jpg";
+import Image5 from "../Image/5.jpg";
+import Image6 from "../Image/6.jpg";
+import Image7 from "../Image/7.jpg";
+import Image8 from "../Image/8.jpg";
 
 const Services = () => {
   const [groupedServices, setGroupedServices] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
 
-  // Function to fetch services
-  const fetchServices = useCallback(async () => {
-    try {
-      const response = await axios.get(
-        "https://az-be-nine.vercel.app/api/services"
-      );
-      groupServices(response.data);
-    } catch (error) {
-      console.error("Error fetching services:", error);
-    }
-  }, []);
+  // Memoized static images array
+  const staticImages = useMemo(
+    () => [Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8],
+    []
+  );
 
   // Group services for the carousel
-  const groupServices = (services) => {
+  const groupServices = useCallback((services) => {
     const groups = [];
     for (let i = 0; i < services.length; i += 4) {
       groups.push(services.slice(i, i + 4));
     }
     setGroupedServices(groups);
-  };
+  }, []);
+
+  // Fetch services and attach images
+  const fetchServices = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        "https://az-be-nine.vercel.app/api/services"
+      );
+      const servicesWithImages = response.data.map((service, index) => ({
+        ...service,
+        serviceImage: staticImages[index % staticImages.length],
+      }));
+      groupServices(servicesWithImages);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    }
+  }, [staticImages, groupServices]);
 
   // Use Effect to call fetchServices once on mount
   useEffect(() => {
@@ -114,21 +125,16 @@ const Services = () => {
                           "0 8px 30px rgba(0, 0, 0, 0.1)";
                       }}
                     >
-                      {service.serviceImage && (
-                  <Card.Img
-                  variant="top"
-                  src={`https://az-be-nine.vercel.app/uploads/${service.serviceImage}`}
-                  style={{
-                    height: "150px",
-                    objectFit: "cover",
-                    borderRadius: "10px",
-                    border: "5px solid #113047",
-                  }}
-                />
-                
-                  
-                     
-                      )}
+                      <Card.Img
+                        variant="top"
+                        src={service.serviceImage}
+                        style={{
+                          height: "150px",
+                          objectFit: "cover",
+                          borderRadius: "10px",
+                          border: "5px solid #113047",
+                        }}
+                      />
                       <Card.Body className="d-flex flex-column justify-content-between">
                         <h5
                           style={{
@@ -166,14 +172,6 @@ const Services = () => {
                           style={{
                             padding: "8px 20px",
                           }}
-                          onMouseEnter={(e) =>
-                            (e.target.style.backgroundColor =
-                              "rgb(255, 102, 102)")
-                          }
-                          onMouseLeave={(e) =>
-                            (e.target.style.backgroundColor =
-                              "rgb(255, 102, 102)")
-                          }
                           onClick={() => handleBookNow(service)}
                         >
                           Book Now
